@@ -2,6 +2,7 @@ import React from "react";
 import style from './UserInfo.module.scss';
 
 const UserInfo = (props) => {
+    
     return (
         <div className={style.userInfo}>
             <div className={style.descr}>ФИО: </div>

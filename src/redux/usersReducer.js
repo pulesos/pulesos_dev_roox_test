@@ -18,17 +18,6 @@ export const setUsersActionCreator = (users) => {
     return {type: 'SET_USERS', users}
 }
 
-// export function personsFetchData(url) {
-//     return (dispatch) => {
-//         fetch(url)
-//             .then(res => {
-//                 if (!res.ok) {
-//                     throw new Error(res.statusText)
-//                 }
-//                 return res;
-//             })
-//             .then(users => dispatch(setUsersActionCreator(users)))
-//     }
-// }
+
 
 export default usersReducer;
