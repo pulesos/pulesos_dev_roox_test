@@ -7,8 +7,8 @@ const Navbar = ({sortFunc}) => {
     return (
         <nav className={style.nav}>
             <h2>Сортировка</h2>
-            <button className={style.btn} onClick={() => sortFunc('city')}>по городу</button>
-            <button className={style.btn} onClick={() => sortFunc('company')}>по компании</button>
+            <button className={style.navBtn} onClick={() => sortFunc('city')}>по городу</button>
+            <button className={style.navBtn} onClick={() => sortFunc('company')}>по компании</button>
         </nav>
     )
 }
