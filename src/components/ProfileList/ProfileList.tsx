@@ -5,8 +5,16 @@ import Profile from "./Profile/Profile";
 import preloader from "../../assets/images/preloader.svg";
 import style from "./ProfileList.module.scss";
 
-const ProfileList = (props) => {
-    const {id} = useParams();
+type IsFetchingType = {
+    isFetching: boolean
+}
+
+type RouteParams = {
+    id: string
+}
+
+const ProfileList: React.FC<IsFetchingType> = (props: any) => {
+    const {id} = useParams<RouteParams>();
 
     const [user, setUser] = useState({});
     const [isFetching, setIsFetching] = useState(true);

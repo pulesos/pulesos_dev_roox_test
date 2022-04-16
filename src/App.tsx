@@ -5,10 +5,12 @@ import ProfileList from './components/ProfileList/ProfileList';
 import Users from './components/Users/Users';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
+import { UserType } from './types/types';
+
 
 function App () {
   
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<UserType[]>([]);
   const [isFetching, setIsFetching] = useState(true);
 
     useEffect(() => {
@@ -20,30 +22,23 @@ function App () {
         })
     }, [])
 
-  const sortFunc = (sortName) => {
-    const clone = [...users]
-    setUsers(clone.sort(byField(sortName)))
+  const sortUsersByAddress = () => {
+    setUsers([...users].sort((a, b) => (a.address!.city > b.address!.city) ? 1 : -1));
   }
 
-  const byField = (sortName) => {
-    switch (sortName) {
-      case 'city':
-        return (a, b) => a.address.city > b.address.city ? 1 : -1
-      case 'company':
-        return (a, b) => a.company.name > b.company.name ? 1 : -1
-      default:
-        return null
-    }
+  const sortUsersByCompany = () => {
+    setUsers([...users].sort((a, b) => (a.company!.name > b.company!.name) ? 1 : -1));
   }
+
     return (
       <div className="App">
-        <Navbar sortFunc={sortFunc}/>
+        <Navbar sortUsersByAddress={sortUsersByAddress} sortUsersByCompany={sortUsersByCompany}/>
         <Routes>
-          <Route path="" element={
+          <Route path="/" element={
             <Users users={users} isFetching={isFetching}/>}>
           </Route>
           <Route path="user/:id" element={
-            <ProfileList users={users} isFetching={isFetching}/>}>
+            <ProfileList {...users} isFetching={isFetching}/>}>
           </Route>
         </Routes>
       </div>

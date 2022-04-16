@@ -2,8 +2,14 @@ import React from 'react';
 import style from './Users.module.scss';
 import UserInfo from './UserInfo/UserInfo';
 import preloader from '../../assets/images/preloader.svg';
+import { UserType } from '../../types/types';
 
-const Users = (props) => {
+type UsersType = {
+    users: UserType[],
+    isFetching: boolean
+}
+
+const Users: React.FC<UsersType> = (props) => {
 
     let usersElements = 
         props.users.map(user => 
